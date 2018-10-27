@@ -1,5 +1,7 @@
 # Yeollin
 
+![](./logo.svg)
+
 (WIP) A interactive keyboard typing speed test app
 
 ## How to test it

@@ -1,7 +1,7 @@
 {
-  "name": "open-typing",
+  "name": "Yeollin",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A interactive keyboard typing speed test app",
   "author": "Muhun Kim <iam@muhun.kim>",
   "private": true,
   "scripts": {

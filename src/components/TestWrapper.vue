@@ -35,14 +35,13 @@ export default {
 			// TODO: repush to prompt_items
 		},
     	space: function() {
-			// FIX: prompt_item is poped last elment
-			let types = this.types.replace(/\s/g, '')
+			let types = this.types.trim()
 			if (types == this.prompt_items[0]) {
 				this.isWorng = false;
 			} else {
 				this.isWorng = true;
 			}
-			this.prompt_items.pop(-1);
+			this.prompt_items.splice(0, 1);
 			this.input_items.push({ type: types, isWorng: this.isWorng });
 			this.types = ''
 		},

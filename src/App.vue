@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <h1>Yeollin</h1>
     <router-view/>
     </div>
 </template>
@@ -19,6 +20,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+img {
+   margin-top: 60px;
+}
+h1 {
+  margin-top: 1px;
 }
 </style>

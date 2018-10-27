@@ -5,6 +5,7 @@
 <!-- </div> -->
 <!-- <div class="test-prompt"> -->
 	<span v-for="(item, index) in prompt_items" :key="'p' + index" class="test-word">{{item}}</span>
+	<button class="Aligner Aligner-item" v-on:click="speedCount(10000)">타속 재기</button> <a>{{this.typeSpeed}}타/분</a>
 </div>
 </template>
 <script>
@@ -12,26 +13,30 @@ export default {
 	name: 'TestWrapper',
 	data () {
 		return {
-			prompt_items: ['가', '나'],
+			prompt_items: ["가각각", "가각간", "얠얩얻", "쨋쨌쨍", "청체첸", "쭸쮜쮸", "시신싣", "춥춧충", "샙샛생샤"],
 			input_items: [],
 			types: '',
 			count: 0,
-			isWorng: false
+			isWorng: false,
+			typeSpeed: 0
 		}
 	},
 	methods: {
     	keyup: function(e) {
 			this.count++;
-			// TODO: do splice if types letter equal to prompt_items[0]
-			// if (this.prompt_items.includes(this.types, 0) {
-			// 	this.prompt_items.splice(0, 1, this.prompt_items[0] - this.types);
-			// 	this.isWorng = false;
-			// } else {
-			// 	this.isWorng = true;
-			// }
+			// TODO: do splice if types letter equal to prompt_items[0] and spliced letter save to cache for space() function
+			
+			// this.prompt_items.splice(0, 1, this.prompt_items[0].replace(this.types, ""));
+
+			if (this.prompt_items.includes(this.types, 0)) {
+				this.isWorng = false;
+			} else {
+				this.isWorng = true;
+			}
 		},
 		backspace: function() {
 			this.count--;
+			console.log(this.count)
 			// TODO: repush to prompt_items
 		},
     	space: function() {
@@ -46,21 +51,58 @@ export default {
 			this.types = ''
 		},
 		// TODO: Type speed count feature
-		// function speedCount() {
-		// setTimeout(()=> typeSpeed = (60000/time) * count, time)
-		// }
+		speedCount: function(time) {
+		setTimeout(()=> this.typeSpeed = (60000/time) * this.count, time)
+		}
 	}
 }
 </script>
 
 <style>
-.worng {
+
+span.test-word.worng, input.worng {
 	text-decoration: line-through;
+	line-height: 1em;
+	position: relative;
+}
+
+span.test-word.worng::after, input.worng::after {
+	border-bottom: 0.125em solid black;
+	content: "";
+	left: 0;
+	margin-top: calc(0.125em / 2 * -1);
+	position: absolute;
+	right: 0;
+	top: 50%;
+}
+
+span.test-word {
+	margin-left:0.2em
+}
+
+.test-input-group {
+	font-size: 24px;
+}
+
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Aligner-item {
+  /* max-width: 50%; */
+  margin: 0 auto;
+  margin-top: 1em;
 }
 
 input{
-	font-size: 14px;
-	width: 50px;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	/* border-bottom: 1px solid black; */
+	font-size: 24px;
+	width: 3em;
 	text-align: right;
 }
 </style>

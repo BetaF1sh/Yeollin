@@ -1,18 +1,14 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <test-wrapper/>
+    <router-view/>
     </div>
 </template>
 
 <script>
-import TestWrapper from '@/components/TestWrapper'
 
 export default {
   name: 'App',
-  components: {
-    TestWrapper
-  }
 }
 </script>
 

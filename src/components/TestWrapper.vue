@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-	name: 'TestInput',
+	name: 'TestWrapper',
 	data () {
 		return {
 			prompt_items: ['가', '나'],

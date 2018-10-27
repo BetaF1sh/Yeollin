@@ -6,7 +6,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import TestWrapper from '@/components/TestWrapper'
 
 export default {

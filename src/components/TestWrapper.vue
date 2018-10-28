@@ -11,6 +11,15 @@
 <script>
 export default {
 	name: 'TestWrapper',
+	// TODO: cache value initalize
+	// computed: {
+	// 	// cache: {
+	// 	// 	get: function() {
+	// 	// 	},
+	// 	// 	set: function(newValue) {
+	// 	// 	}
+	// 	// }
+	// },
 	data () {
 		return {
 			prompt_items: ["가각각", "가각간", "얠얩얻", "쨋쨌쨍", "청체첸", "쭸쮜쮸", "시신싣", "춥춧충", "샙샛생샤"],
@@ -18,17 +27,22 @@ export default {
 			types: '',
 			count: 0,
 			isWorng: false,
-			typeSpeed: 0
+			typeSpeed: 0,
+			cache: '',
 		}
 	},
 	methods: {
     	keyup: function(e) {
+			if (e.keyCode < 65 && e.keyCode > 90) {
+				return
+			}
+			if (this.cache == '') {
+				this.cache = this.prompt_items[0]
+			}
 			this.count++;
-			// TODO: do splice if types letter equal to prompt_items[0] and spliced letter save to cache for space() function
-			
-			// this.prompt_items.splice(0, 1, this.prompt_items[0].replace(this.types, ""));
+			this.prompt_items.splice(0, 1, this.cache.replace(this.types, ""));
 
-			if (this.prompt_items.includes(this.types, 0)) {
+			if (this.cache.includes(this.types)) {
 				this.isWorng = false;
 			} else {
 				this.isWorng = true;
@@ -36,8 +50,6 @@ export default {
 		},
 		backspace: function() {
 			this.count--;
-			console.log(this.count)
-			// TODO: repush to prompt_items
 		},
     	space: function() {
 			let types = this.types.trim()
@@ -48,9 +60,9 @@ export default {
 			}
 			this.prompt_items.splice(0, 1);
 			this.input_items.push({ type: types, isWorng: this.isWorng });
-			this.types = ''
+			this.cache = this.prompt_items[0]
+			this.types = '';
 		},
-		// TODO: Type speed count feature
 		speedCount: function(time) {
 		setTimeout(()=> this.typeSpeed = (60000/time) * this.count, time)
 		}

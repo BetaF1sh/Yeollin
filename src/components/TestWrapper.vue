@@ -1,10 +1,10 @@
 <template>
 <div class="test-input-group">
-<span v-bind:class="{ 'worng': item.isWorng }" v-for="(item, index) in input_items" :key="'i' + index" class="test-word">{{item.type}}</span>
+<span v-bind:class="{ 'worng': item.isWorng }" v-for="(item, index) in input_items.slice(0, 3)" :key="'i' + index" class="test-word">{{item.type}}</span>
 <input type="text" v-bind:class="{ 'worng': isWorng }" v-model="types" v-on:keyup="keyup" v-on:backspace="backspace" v-on:keyup.space="space">
 <!-- </div> -->
 <!-- <div class="test-prompt"> -->
-	<span v-for="(item, index) in prompt_items" :key="'p' + index" class="test-word">{{item}}</span>
+	<span v-for="(item, index) in prompt_items.slice(0, 3)" :key="'p' + index" class="test-word">{{item}}</span>
 	<button class="Aligner Aligner-item" v-on:click="speedCount(10000)">타속 재기</button> <a>{{this.typeSpeed}}타/분</a>
 </div>
 </template>
@@ -22,7 +22,7 @@ export default {
 	// },
 	data () {
 		return {
-			prompt_items: ["가각각", "가각간", "얠얩얻", "쨋쨌쨍", "청체첸", "쭸쮜쮸", "시신싣", "춥춧충", "샙샛생샤"],
+			prompt_items: ["가각각", "가각간", "얠얩얻", "쨋쨌쨍", "청체첸", "쭸쮜쮸", "시신싣", "춥춧충", "샙샛샤"],
 			input_items: [],
 			types: '',
 			count: 0,
@@ -53,7 +53,7 @@ export default {
 		},
     	space: function() {
 			let types = this.types.trim()
-			if (types == this.prompt_items[0]) {
+			if (types == this.cache) {
 				this.isWorng = false;
 			} else {
 				this.isWorng = true;
@@ -113,8 +113,8 @@ input{
 	outline: 0;
 	background: transparent;
 	/* border-bottom: 1px solid black; */
-	font-size: 24px;
-	width: 3em;
+	font-size: 1em;
+	width: 3.6em;
 	text-align: right;
 }
 </style>

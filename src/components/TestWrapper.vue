@@ -1,7 +1,7 @@
 <template>
 <div class="test-input-group">
-<span v-bind:class="{ 'worng': item.isWorng }" v-for="(item, index) in input_items.slice(0, 3)" :key="'i' + index" class="test-word">{{item.type}}</span>
-<input type="text" v-bind:class="{ 'worng': isWorng }" v-model="types" v-on:keyup="keyup" v-on:backspace="backspace" v-on:keyup.space="space">
+<span v-bind:class="{ 'worng': item.isWorng }" v-for="(item, index) in input_items.slice(0, 3)" :key="'i' + index" class="test-word done">{{item.type}}</span>
+<input type="text" v-bind:class="{ 'worng': isWorng}" v-model="types" v-on:keyup="keyup" v-on:backspace="backspace" v-on:keyup.space="space" class="done" tabindex="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
 <!-- </div> -->
 <!-- <div class="test-prompt"> -->
 	<span v-for="(item, index) in prompt_items.slice(0, 3)" :key="'p' + index" class="test-word">{{item}}</span>
@@ -40,6 +40,7 @@ export default {
 				this.cache = this.prompt_items[0]
 			}
 			this.count++;
+			// TODO: If the first input matches the middle letter, Don't splice
 			this.prompt_items.splice(0, 1, this.cache.replace(this.types, ""));
 
 			if (this.cache.includes(this.types)) {
@@ -50,6 +51,7 @@ export default {
 		},
 		backspace: function() {
 			this.count--;
+
 		},
     	space: function() {
 			let types = this.types.trim()
@@ -79,17 +81,17 @@ span.test-word.worng, input.worng {
 }
 
 span.test-word.worng::after, input.worng::after {
-	border-bottom: 0.125em solid black;
+	border-bottom: 0.1em solid;
 	content: "";
 	left: 0;
-	margin-top: calc(0.125em / 2 * -1);
+	margin-top: calc(0.001em / 2 * -1);
 	position: absolute;
 	right: 0;
 	top: 50%;
 }
 
 span.test-word {
-	margin-left:0.2em
+	padding: 0 0.2em;
 }
 
 .test-input-group {
@@ -109,12 +111,16 @@ span.test-word {
 }
 
 input{
+	line-height: 1.3em;
+	padding-left: 5px;
 	border: 0;
-	outline: 0;
-	background: transparent;
-	/* border-bottom: 1px solid black; */
+	text-align: right;
 	font-size: 1em;
 	width: 3.6em;
-	text-align: right;
+
+}
+
+.done {
+	color: gray;
 }
 </style>

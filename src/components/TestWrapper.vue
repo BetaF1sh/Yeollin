@@ -1,68 +1,57 @@
-<!-- TOOD: naming imporve -->
 <template>
 <div class="test-input-group">
-<span v-bind:class="{ 'worng': item.isWorng }" v-for="(item, index) in input_items.slice(-3)" :key="'i' + index" class="test-word done">{{item.type}}</span>
-<input type="text" v-bind:class="{ 'worng': isWorng}" v-model="types" v-on:keyup="keyup" v-on:backspace="backspace" v-on:keyup.space="space" class="done" tabindex="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
+<span v-bind:class="{ 'wrong': word.isWrong }" v-for="(word, index) in done_words.slice(-3)" :key="'i' + index" class="test-word done">{{word.type}}</span>
+<input type="text" v-bind:class="{ 'wrong': isWrong}" v-model="typing" v-on:keyup="keyup" v-on:backspace="backspace" v-on:keyup.space="space" class="done" tabindex="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
 <!-- </div> -->
 <!-- <div class="test-prompt"> -->
-	<span v-for="(item, index) in prompt_items.slice(0, 3)" :key="'p' + index" class="test-word">{{item}}</span>
+	<span v-for="(word, index) in serve_words.slice(0, 3)" :key="'p' + index" class="test-word">{{word}}</span>
 	<div>{{this.typeSpeed}}타/분</div>
 </div>
 </template>
 <script>
+import wordset from '@/assets/wordset.json';
 export default {
 	name: 'TestWrapper',
 	data () {
 		return {
-			prompt_items: ["가각각", "가각간", "얠얩얻", "쨋쨌쨍", "청체첸", "쭸쮜쮸", "시신싣", "춥춧충", "샙샛샤"],
-			input_items: [],
-			types: null,
+			serve_words: wordset['long_sentence'],
+			done_words: [],
+			typing: '',
 			count: 0,
-			isWorng: false,
+			isWrong: false,
 			typeSpeed: 0,
 			cache: null,
 		}
 	},
 	beforeMount() {
-		this.cache = this.prompt_items[0];
+		this.cache = this.serve_words[0];
 	},
 	methods: {
     	keyup: function(e) {
-			if (e.keyCode < 65 && e.keyCode > 90) return
-			if (this.count == 0) this.speedCount(10000);
+			if (this.count == 0) this.speedCount(60000); 
 			this.count++;
-			
-			if (this.types.length == 1 && this.types !== this.cache[0]) {
-				this.isWorng = true;
-				return
-			}
 
-			this.prompt_items.splice(0, 1, this.cache.replace(this.types, ''));
-
-			if (this.cache.includes(this.types)) {
-				this.isWorng = false;
-			} else {
-				this.isWorng = true;
-			}
+			// if (this.typing.length < 2 && this.typing !== this.cache[0]) {
+			// 	this.isWrong = true;
+			// }else {
+				this.isWrong = !this.cache.includes(this.typing);
+				this.serve_words.splice(0, 1, this.cache.replace(this.typing, ''));
+			// }
 		},
 		backspace: function() {
 			this.count--;
-
 		},
     	space: function() {
-			let types = this.types.trim()
-			if (types == this.cache) {
-				this.isWorng = false;
-			} else {
-				this.isWorng = true;
-			}
-			this.prompt_items.splice(0, 1);
-			this.input_items.push({ type: types, isWorng: this.isWorng });
-			this.cache = this.prompt_items[0]
-			this.types = '';
+			this.serve_words.splice(0, 1);
+
+			let types = this.typing.trim();
+			this.done_words.push({ type: types, isWrong: !(types == this.cache) });
+			
+			this.cache = this.serve_words[0];
+			this.typing = '';
 		},
 		speedCount: function(time) {
-		setTimeout(()=> this.typeSpeed = (60000/time) * this.count, time)
+			setTimeout(()=> this.typeSpeed = (60000/time) * this.count, time);
 		}
 	}
 }
@@ -70,13 +59,13 @@ export default {
 
 <style>
 
-span.test-word.worng, input.worng {
+span.test-word.wrong, input.wrong {
 	text-decoration: line-through;
 	line-height: 1em;
 	position: relative;
 }
 
-span.test-word.worng::after, input.worng::after {
+span.test-word.wrong::after, input.wrong::after {
 	border-bottom: 0.1em solid;
 	content: '';
 	left: 0;

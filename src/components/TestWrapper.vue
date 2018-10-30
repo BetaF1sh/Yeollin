@@ -5,7 +5,7 @@
 <!-- </div> -->
 <!-- <div class="test-prompt"> -->
 	<span v-for="(item, index) in prompt_items.slice(0, 3)" :key="'p' + index" class="test-word">{{item}}</span>
-	<button class="Aligner Aligner-item" v-on:click="speedCount(10000)">타속 재기</button> <a>{{this.typeSpeed}}타/분</a>
+	<div>{{this.typeSpeed}}타/분</div>
 </div>
 </template>
 <script>
@@ -33,15 +33,19 @@ export default {
 	},
 	methods: {
     	keyup: function(e) {
-			if (e.keyCode < 65 && e.keyCode > 90) {
-				return
-			}
+			if (e.keyCode < 65 && e.keyCode > 90) return
 			if (this.cache == '') {
-				this.cache = this.prompt_items[0]
+				this.cache = this.prompt_items[0];
+				this.speedCount(10000);
 			}
 			this.count++;
-			// TODO: If the first input matches the middle letter, Don't splice
-			this.prompt_items.splice(0, 1, this.cache.replace(this.types, ""));
+			
+			if (this.types.length == 1 && this.types !== this.cache[0]) {
+				this.isWorng = true;
+				return
+			}
+
+			this.prompt_items.splice(0, 1, this.cache.replace(this.types, ''));
 
 			if (this.cache.includes(this.types)) {
 				this.isWorng = false;
@@ -82,7 +86,7 @@ span.test-word.worng, input.worng {
 
 span.test-word.worng::after, input.worng::after {
 	border-bottom: 0.1em solid;
-	content: "";
+	content: '';
 	left: 0;
 	margin-top: calc(0.001em / 2 * -1);
 	position: absolute;

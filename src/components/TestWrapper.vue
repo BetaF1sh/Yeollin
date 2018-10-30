@@ -1,3 +1,4 @@
+<!-- TOOD: naming imporve -->
 <template>
 <div class="test-input-group">
 <span v-bind:class="{ 'worng': item.isWorng }" v-for="(item, index) in input_items.slice(-3)" :key="'i' + index" class="test-word done">{{item.type}}</span>
@@ -11,33 +12,24 @@
 <script>
 export default {
 	name: 'TestWrapper',
-	// TODO: cache value initalize
-	// computed: {
-	// 	// cache: {
-	// 	// 	get: function() {
-	// 	// 	},
-	// 	// 	set: function(newValue) {
-	// 	// 	}
-	// 	// }
-	// },
 	data () {
 		return {
 			prompt_items: ["가각각", "가각간", "얠얩얻", "쨋쨌쨍", "청체첸", "쭸쮜쮸", "시신싣", "춥춧충", "샙샛샤"],
 			input_items: [],
-			types: '',
+			types: null,
 			count: 0,
 			isWorng: false,
 			typeSpeed: 0,
-			cache: '',
+			cache: null,
 		}
+	},
+	beforeMount() {
+		this.cache = this.prompt_items[0];
 	},
 	methods: {
     	keyup: function(e) {
 			if (e.keyCode < 65 && e.keyCode > 90) return
-			if (this.cache == '') {
-				this.cache = this.prompt_items[0];
-				this.speedCount(10000);
-			}
+			if (this.count == 0) this.speedCount(10000);
 			this.count++;
 			
 			if (this.types.length == 1 && this.types !== this.cache[0]) {

@@ -1,6 +1,6 @@
 <template>
 <div class="test-input-group">
-<span v-bind:class="{ 'worng': item.isWorng }" v-for="(item, index) in input_items.slice(0, 3)" :key="'i' + index" class="test-word done">{{item.type}}</span>
+<span v-bind:class="{ 'worng': item.isWorng }" v-for="(item, index) in input_items.slice(-3)" :key="'i' + index" class="test-word done">{{item.type}}</span>
 <input type="text" v-bind:class="{ 'worng': isWorng}" v-model="types" v-on:keyup="keyup" v-on:backspace="backspace" v-on:keyup.space="space" class="done" tabindex="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
 <!-- </div> -->
 <!-- <div class="test-prompt"> -->

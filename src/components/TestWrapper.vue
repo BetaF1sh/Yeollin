@@ -31,7 +31,7 @@ export default {
 	methods: {
     	keyup: function(e) {
 			if (e.keyCode < 65 || e.keyCode > 90) return
-			if (this.count === 0) this.speedCount(10000); 
+			if (this.count === 0) this.speedCount(60000); 
 			this.count++;
 
 			// if (this.typing.length < 2 && this.typing !== this.cache[0]) {

@@ -4,9 +4,9 @@
 
 열린 : 상호 작용적인 타자 연습기.
 
-[유튜브](https://youtu.be/-5ztDFvFqaA)에서 데모를 보실 수 있습니다.
-
 [![Build Status](https://travis-ci.com/BetaF1sh/Yeollin.svg?token=oS2RTdBSfDSA46GmLJ19&branch=master)](https://travis-ci.com/BetaF1sh/Yeollin)
+
+[데모 페이지](https://betaf1sh.github.io/Yeollin/)에서 시험해보실 수 있습니다.
 
 ## TODO
 

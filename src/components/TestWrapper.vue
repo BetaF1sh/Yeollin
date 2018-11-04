@@ -1,12 +1,14 @@
 <template>
-<div class="test-input-group">
-<span v-bind:class="{ 'wrong': word.isWrong }" v-for="(word, index) in done_words.slice(-3)" :key="'i' + index" class="test-word done">{{word.type}}</span>
-<input type="text" v-bind:class="{ 'wrong': isWrong}" v-model="typing" v-on:keyup="keyup" v-on:backspace="backspace" v-on:keyup.space="space" class="done" tabindex="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
-<!-- </div> -->
-<!-- <div class="test-prompt"> -->
-	<span v-for="(word, index) in serve_words.slice(0, 3)" :key="'p' + index" class="test-word">{{word}}</span>
-	<div>{{this.typeSpeed}}타/분</div>
-</div>
+	<div>
+		<span class="test-done-group">
+			<span v-bind:class="{ 'wrong': word.isWrong }" v-for="(word, index) in done_words.slice(-3)" :key="'i' + index" class="test-word done">{{word.type}}</span>
+			<input type="text" v-bind:class="{ 'wrong': isWrong}" v-model="typing" @input="keyup" @keypress.delete="backspace" @keyup.space="space" tabindex="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
+		</span>
+		<span class="serve-word-group">
+			<span v-for="(word, index) in serve_words.slice(0, 3)" :key="'p' + index" class="test-word">{{word}}</span>
+		</span>
+		<div>{{this.typeSpeed}}타/분</div>
+	</div>
 </template>
 <script>
 import wordset from '@/assets/wordset.json';
@@ -28,7 +30,8 @@ export default {
 	},
 	methods: {
     	keyup: function(e) {
-			if (this.count == 0) this.speedCount(60000); 
+			if (e.keyCode < 65 || e.keyCode > 90) return
+			if (this.count === 0) this.speedCount(10000); 
 			this.count++;
 
 			// if (this.typing.length < 2 && this.typing !== this.cache[0]) {
@@ -39,26 +42,27 @@ export default {
 			// }
 		},
 		backspace: function() {
+			console.log(this.count);
 			this.count--;
+			console.log(this.count)
 		},
     	space: function() {
 			this.serve_words.splice(0, 1);
 
 			let types = this.typing.trim();
-			this.done_words.push({ type: types, isWrong: !(types == this.cache) });
+			this.done_words.push({ type: types, isWrong: !(types === this.cache) });
 			
 			this.cache = this.serve_words[0];
 			this.typing = '';
 		},
 		speedCount: function(time) {
-			setTimeout(()=> this.typeSpeed = (60000/time) * this.count, time);
+			setTimeout(() => this.typeSpeed = (60000/time) * this.count, time);
 		}
 	}
 }
 </script>
 
 <style>
-
 span.test-word.wrong, input.wrong {
 	text-decoration: line-through;
 	line-height: 1em;
@@ -79,8 +83,10 @@ span.test-word {
 	padding: 0 0.2em;
 }
 
-.test-input-group {
+.test-done-group, .serve-word-group {
 	font-size: 24px;
+	width: 50vw;
+	max-width: 50vw;
 }
 
 .Aligner {
@@ -90,7 +96,6 @@ span.test-word {
 }
 
 .Aligner-item {
-  /* max-width: 50%; */
   margin: 0 auto;
   margin-top: 1em;
 }
@@ -105,7 +110,7 @@ input{
 
 }
 
-.done {
+.done, input {
 	color: gray;
 }
 </style>

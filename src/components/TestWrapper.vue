@@ -42,9 +42,7 @@ export default {
 			// }
 		},
 		backspace: function() {
-			console.log(this.count);
 			this.count--;
-			console.log(this.count)
 		},
     	space: function() {
 			this.serve_words.splice(0, 1);

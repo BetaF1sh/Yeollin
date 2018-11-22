@@ -1,0 +1,12 @@
+@font-face {
+	font-family: "BM HANNA Pro";
+	src: url("BMHANNAPro.eot");
+	src: local("BM HANNA Pro"), local("BM HANNA Pro OTF"),
+	url("BMHANNAPro.eot") format("embedded-opentype"),
+	url("BMHANNAPro.woff2") format("woff2"),
+	url("BMHANNAPro.woff") format("woff"),
+	url("BMHANNAPro.ttf") format("truetype"),
+	url("BMHANNAPro.svg#BM HANNA Pro") format("svg");
+	font-style: normal;
+	font-weight: normal;
+}

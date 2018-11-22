@@ -2,7 +2,7 @@
 	<div>
 		<span class="test-done-group">
 			<span v-bind:class="{ 'wrong': word.isWrong }" v-for="(word, index) in done_words.slice(-3)" :key="'i' + index" class="test-word done">{{word.type}}</span>
-			<input type="text" v-bind:class="{ 'wrong': isWrong}" v-model="typing" @input="keyup" @keypress.delete="backspace" @keyup.space="space" tabindex="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
+			<input type="text" v-bind:class="{ 'wrong': isWrong, 'bamin': isBamin[this.$route.params.word]}" v-model="typing" @input="keyup" @keypress.delete="backspace" @keyup.space="space" tabindex="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true">
 		</span>
 		<span class="serve-word-group">
 			<span v-for="(word, index) in serve_words.slice(0, 3)" :key="'p' + index" class="test-word">{{word}}</span>
@@ -18,23 +18,25 @@ export default {
   data() {
     return {
       serve_words: wordset[this.$route.params.word],
+      isBamin: { bamin: true, default: false },
       done_words: [],
       typing: "",
       count: 0,
       isWrong: false,
       typeSpeed: 0,
-      cache: null
+      cache: null,
+      time_status: 0
     };
   },
   beforeMount() {
     this.cache = this.serve_words[0];
   },
-// TODO: wordset[] computed
-//   computed: {
-//     word_type: function() {
-//       return this.$route.params.word;
-//     }
-//   },
+  // TODO: wordset[] computed
+  //   computed: {
+  //     word_type: function() {
+  //       return this.$route.params.word;
+  //     }
+  //   },
   methods: {
     keyup: function(e) {
       if (e.keyCode < 65 || e.keyCode > 90) return;
@@ -61,6 +63,11 @@ export default {
       this.typing = "";
     },
     speedCount: function(time) {
+      // setInterval(() => (
+      //   if (this.time_status++ == 60){
+
+      //   }
+      // ), time);
       setTimeout(() => (this.typeSpeed = (60000 / time) * this.count), time);
     }
   }
@@ -68,6 +75,8 @@ export default {
 </script>
 
 <style scoped>
+@import "../assets/BMHANNA/BMHANNAPro.css";
+
 span.test-word.wrong,
 input.wrong {
   text-decoration: line-through;
@@ -86,8 +95,9 @@ input.wrong::after {
   top: 50%;
 }
 
-span.test-word {
+.test-word {
   padding: 0 0.2em;
+  display: inline;
 }
 
 .test-done-group,
@@ -95,17 +105,6 @@ span.test-word {
   font-size: 24px;
   width: 50vw;
   max-width: 50vw;
-}
-
-.Aligner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.Aligner-item {
-  margin: 0 auto;
-  margin-top: 1em;
 }
 
 input {
@@ -120,5 +119,9 @@ input {
 .done,
 input {
   color: gray;
+}
+
+.bamin {
+  font-family: "BM HANNA Pro";
 }
 </style>

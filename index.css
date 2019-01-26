@@ -48,6 +48,7 @@ header img {
 	width: 100vw;
 	height: 106px;
 	background-color: #F1F1F1;
+	font-family: serif;
 }
 
 .left-prompt,
@@ -60,7 +61,10 @@ header img {
 .left-prompt {
 	left: 0;
 	color: #6174b4;
-	text-align: right;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: right;
+	/* text-align: right; */
 }
 
 .right-prompt {
@@ -70,7 +74,6 @@ header img {
 
 .word {
 	margin: 0 5px 0 0;
-	font-family: serif;
 	font-size: 19px;
 }
 
@@ -83,8 +86,10 @@ header img {
 	text-decoration-color: #6174b4;
 }
 
-/* input {
-	all: unset;
-	display: inline-block;
-	width: 0;
-} */
+#test-input {
+	outline: 0;
+	border: 0;
+	min-width: 2px;
+	font-size: 19px;
+	text-overflow: clip;
+}

@@ -3,6 +3,7 @@
 
 <head>
 	<title>typewriter</title>
+	<meta charset="utf8" />
 	<link href="index.css" rel="stylesheet" />
 </head>
 
@@ -32,10 +33,13 @@
 		<div class="left-prompt">
 			<span class="word wrong">김무</span>
 			<span class="word typing">김</span>
+			<div id="test-input" tabindex="1" contenteditable="true" spellcheck="false" autofocus></div>
 		</div>
 		<div class="right-prompt">
-			<!-- <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="word"> -->
-			<span class="word">무훈</span>
+			<span class="word first" data-i="0">무훈</span>
 		</div>
 	</div>
+	<script src="index.js"></script>
 </body>
+
+</html>

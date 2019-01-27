@@ -12,6 +12,7 @@
 		<img src="symbol.svg">
 	</header>
 	<div id="metric-warpper">
+		<!-- TODO: grid or flex -->
 		<div class="metric">
 			<div class="value">0</div>
 			<div class="lable">단어 / 분</div>
@@ -32,12 +33,11 @@
 	<div id="prompt-warpper">
 		<div class="left-prompt">
 			<span class="word wrong">김무</span>
-			<span class="word typing">김</span>
-			<div id="test-input" tabindex="1" contenteditable="true" spellcheck="false" autofocus></div>
+			<span class="word">김</span>
+			<span id="test-input" class="word" tabindex="1" contenteditable="true" spellcheck="false" autofocus></span>
 		</div>
 		<div class="right-prompt">
-			<span class="word first" data-i="0">무훈</span>
-		</div>
+			<span class="word" data-i="0">무훈</span></div>
 	</div>
 	<script src="index.js"></script>
 </body>

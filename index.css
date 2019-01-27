@@ -41,6 +41,7 @@ header img {
 
 .metric.sec {
 	display: block;
+	margin-left: 16px;
 }
 
 #prompt-warpper {
@@ -77,10 +78,6 @@ header img {
 	font-size: 19px;
 }
 
-.word.typing {
-	margin: 0 0 0 5px;
-}
-
 .word.wrong {
 	text-decoration-line: line-through;
 	text-decoration-color: #6174b4;
@@ -89,7 +86,6 @@ header img {
 #test-input {
 	outline: 0;
 	border: 0;
-	min-width: 2px;
-	font-size: 19px;
-	text-overflow: clip;
+	min-width: 0;
+	margin: 0 0 0 5px;
 }

@@ -21,11 +21,14 @@ header img {
 	/* z-index: 10; */
 	color: #F1F1F1;
 	text-align: center;
+	display: grid;
+	grid-template-columns: 44px 44px 44px;
+	grid-template-rows: 77px 77px;
+	grid-gap: 0.5rem;
+	justify-content: center;
 }
 
 .metric {
-	margin: 0 0.5rem;
-	display: inline-block;
 	font-family: SpoqaHanSans, sans-serif;
 	font-weight: 300;
 	text-shadow: 0 1px #000000;
@@ -40,8 +43,7 @@ header img {
 }
 
 .metric.sec {
-	display: block;
-	margin-left: 16px;
+	grid-column: 2;
 }
 
 #prompt-warpper {

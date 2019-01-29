@@ -1,0 +1,17 @@
+{
+	"env": {
+		"es6": true,
+		"browser": true
+	},
+	"extends": "airbnb",
+	"rules": {
+		"no-console": 0,
+		"no-unused-vars": 1,
+		"indent": [2, "tab"],
+		"no-tabs": 0,
+		"prefer-destructuring": "off",
+		"func-names": "off",
+		"wrap-iife": "off",
+		"no-restricted-syntax": "off"
+	}
+}

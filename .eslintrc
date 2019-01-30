@@ -13,5 +13,14 @@
 		"func-names": "off",
 		"wrap-iife": "off",
 		"no-restricted-syntax": "off"
-	}
+	},
+	"overrides": [
+		{
+			"files": ["webpack.config.js"],
+			"rules": {
+				"comma-dangle": "off",
+				"semi": "off"
+			}
+		}
+	]
 }

@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "build": "npx webpack",
-    "start": "npx webpack-dev-server --open",
-    "watch": "npx webpack --watch"
+    "build": "npx webpack --mode=production",
+    "start": "npx webpack-dev-server --open --mode=development --devtool=inline-source-map",
+    "watch": "npx webpack --watch --mode=development"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.1",

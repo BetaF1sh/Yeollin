@@ -3,9 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-	mode: 'development',
 	entry: './src/index.js',
-	devtool: 'inline-source-map',
+
 	devServer: {
 		// index: './index.html',
 		contentBase: './dist'

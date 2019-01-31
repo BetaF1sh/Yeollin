@@ -2,6 +2,12 @@ import './index.css';
 
 import { jejulang as words } from './words.json';
 
+import symbol from './symbol.svg';
+
+const Img = new Image();
+Img.src = symbol;
+document.querySelector('header').appendChild(Img);
+
 const promptWarpper = document.querySelector('#prompt-warpper');
 const leftPrompt = document.querySelector('.left-prompt');
 const rightPrompt = document.querySelector('.right-prompt');
@@ -38,8 +44,6 @@ for (const val of words.slice(0, 3)) {
 promptWarpper.addEventListener('click', () => inputPrompt.focus());
 
 inputPrompt.addEventListener('keydown', (e) => {
-	if (e.keyCode < 65 || e.keyCode > 90) return;
-
 	const innerText = inputPrompt.innerText;
 
 	if ((inputBool[e.code] || inputBool.default) && innerText.length) {
@@ -47,14 +51,15 @@ inputPrompt.addEventListener('keydown', (e) => {
 			inputPrompt.innerHTML = '';
 			return;
 		}
-		// if (innerText.length) {
 		appendLeft(innerText.replace(/\n/mg, ''));
-		// }
+
 		rightPrompt.removeChild(rightPromptChild);
 		rightPromptChild = rightPrompt.firstElementChild || false;
 		inputPrompt.innerHTML = '';
 		return;
 	}
+
+	if (e.keyCode < 65 || e.keyCode > 90) return;
 
 	const inputClass = inputPrompt.classList;
 	const targetIncludes = rightPromptChild.innerText.includes.bind(rightPromptChild);
@@ -65,7 +70,5 @@ inputPrompt.addEventListener('keydown', (e) => {
 });
 
 inputPrompt.addEventListener('keyup', (e) => {
-	if (inputBool[e.code] || inputBool.default) {
-		inputPrompt.innerHTML = '';
-	}
+	if (inputBool[e.code] || inputBool.default) inputPrompt.innerHTML = '';
 });

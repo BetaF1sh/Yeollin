@@ -8,35 +8,38 @@
 
 <body>
 	<header>
-		<img src="symbol.svg">
+		<!-- <img src="symbol.svg"> -->
 	</header>
-	<div id="metric-warpper">
-		<div class="metric">
-			<div class="value">0</div>
-			<div class="lable">단어 / 분</div>
+	<main>
+		<div id="metric-warpper">
+			<div class="metric">
+				<div class="value">0</div>
+				<div class="lable">단어 / 분</div>
+			</div>
+			<div class="metric">
+				<div class="value">0</div>
+				<div class="lable">글자 / 분</div>
+			</div>
+			<div class="metric">
+				<div class="value">0</div>
+				<div class="label">정확도</div>
+			</div>
+			<div class="metric sec">
+				<div class="value">0</div>
+				<div class="label">초</div>
+			</div>
 		</div>
-		<div class="metric">
-			<div class="value">0</div>
-			<div class="lable">글자 / 분</div>
+		<div id="prompt-warpper">
+			<div class="left-prompt">
+				<span class="word wrong">김무</span>
+				<span class="word">김</span>
+				<span id="test-input" class="word" tabindex="1" contenteditable="true" spellcheck="false" autofocus></span>
+			</div>
+			<div class="right-prompt">
+				<span class="word" data-i="0">무훈</span></div>
 		</div>
-		<div class="metric">
-			<div class="value">0</div>
-			<div class="label">정확도</div>
-		</div>
-		<div class="metric sec">
-			<div class="value">0</div>
-			<div class="label">초</div>
-		</div>
-	</div>
-	<div id="prompt-warpper">
-		<div class="left-prompt">
-			<span class="word wrong">김무</span>
-			<span class="word">김</span>
-			<span id="test-input" class="word" tabindex="1" contenteditable="true" spellcheck="false" autofocus></span>
-		</div>
-		<div class="right-prompt">
-			<span class="word" data-i="0">무훈</span></div>
-	</div>
+	</main>
+	<div id="bottom"></div>
 </body>
 
 </html>

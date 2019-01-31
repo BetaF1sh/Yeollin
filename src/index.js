@@ -22,9 +22,10 @@ const inputBool = {
 
 let rightPromptChild = rightPrompt.firstElementChild;
 
-function inputForm(word) {
+function inputForm(word, isWrong) {
 	const span = document.createElement('span');
 	span.className = 'word';
+	if (isWrong) span.classList.add('wrong');
 	span.innerText = word;
 	return span.cloneNode(true);
 }
@@ -33,8 +34,8 @@ function appendRight(word) {
 	rightPrompt.appendChild(inputForm(word));
 }
 
-function appendLeft(word) {
-	leftPrompt.insertBefore(inputForm(word), inputPrompt);
+function appendLeft(word, isWrong) {
+	leftPrompt.insertBefore(inputForm(word, isWrong), inputPrompt);
 }
 
 for (const val of words.slice(0, 3)) {
@@ -51,7 +52,7 @@ inputPrompt.addEventListener('keydown', (e) => {
 			inputPrompt.innerHTML = '';
 			return;
 		}
-		appendLeft(innerText.replace(/\n/mg, ''));
+		appendLeft(innerText.replace(/\n/mg, ''), inputPrompt.classList.contains('wrong'));
 
 		rightPrompt.removeChild(rightPromptChild);
 		rightPromptChild = rightPrompt.firstElementChild || false;

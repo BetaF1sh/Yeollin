@@ -1,12 +1,4 @@
-import './index.css';
-
 import { jejulang as words } from './words.json';
-
-import symbol from './symbol.svg';
-
-const Img = new Image();
-Img.src = symbol;
-document.querySelector('header').appendChild(Img);
 
 const promptWarpper = document.querySelector('#prompt-warpper');
 const leftPrompt = document.querySelector('.left-prompt');
@@ -22,6 +14,7 @@ const inputBool = {
 
 let rightPromptChild = rightPrompt.firstElementChild;
 
+// TODO: getter, setter 로 개선
 function inputForm(word, isWrong) {
 	const span = document.createElement('span');
 	span.className = 'word';

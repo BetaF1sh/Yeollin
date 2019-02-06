@@ -3,7 +3,9 @@ body {
 	background-color: rgb(22, 75, 138);
 	font-size: 14px;
 	color: #e8e7e3;
+	width: 100vw;
 	height: 100vh;
+	overflow-x: hidden;
 }
 
 #bottom {

@@ -4,11 +4,12 @@
 <head>
 	<title>typewriter</title>
 	<meta charset="utf8" />
+	<link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
 	<header>
-		<!-- <img src="symbol.svg"> -->
+		<img src="symbol.svg">
 	</header>
 	<main>
 		<div id="metric-warpper">
@@ -30,16 +31,18 @@
 			</div>
 		</div>
 		<div id="prompt-warpper">
-			<div class="left-prompt">
+			<div id="left-prompt">
 				<span class="word wrong">김무</span>
 				<span class="word">김</span>
 				<span id="test-input" class="word" tabindex="1" contenteditable="true" spellcheck="false" autofocus></span>
 			</div>
-			<div class="right-prompt">
+			<div id="right-prompt">
 				<span class="word" data-i="0">무훈</span></div>
 		</div>
 	</main>
 	<div id="bottom"></div>
+
+	<script type="module" src="./src/app.js"></script>
 </body>
 
 </html>
